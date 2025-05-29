@@ -45,14 +45,43 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "node_count" {
-  description = "Number of nodes in the default node pool"
-  type        = number
+# Default node pool variables
+variable "default_node_pool" {
+  description = "Default node pool configuration"
+  type = object({
+    name                 = string
+    node_count           = number
+    machine_type         = string
+    min_count            = number
+    max_count            = number
+    auto_scaling_enabled = bool
+  })
+  default = {
+    name                 = "systempool"
+    node_count           = 1
+    machine_type         = "e2-medium"
+    min_count            = 1
+    max_count            = 3
+    auto_scaling_enabled = true
+  }
 }
 
-variable "machine_type" {
-  description = "Machine type for GKE nodes, e.g. e2-medium"
-  type        = string
+# Additional node pools, list of objects
+variable "additional_node_pools" {
+  description = "List of additional node pool configurations"
+  type = list(object({
+    name                 = string
+    machine_type         = string
+    node_count           = number
+    min_count            = number
+    max_count            = number
+    auto_scaling_enabled = bool
+    node_taints          = optional(list(string))
+    max_pods             = optional(number)
+    node_labels          = optional(map(string))
+    tags                 = optional(map(string))
+  }))
+  default = []
 }
 
 variable "db_password" {
@@ -65,3 +94,41 @@ variable "enabled_apis" {
   description = "List of APIs to enable"
   type        = list(string)
 }
+
+variable "pods_range_name" {
+  description = "Secondary range name for GKE pods"
+  type        = string
+}
+
+variable "pods_ip_range" {
+  description = "CIDR range for GKE pods"
+  type        = string
+}
+
+variable "services_range_name" {
+  description = "Secondary range name for GKE services"
+  type        = string
+}
+
+variable "services_ip_range" {
+  description = "CIDR range for GKE services"
+  type        = string
+}
+
+
+variable "repo_name" {
+  type        = string
+  description = "Name of the Docker repository in Artifact Registry"
+}
+
+variable "bucket_name" {
+  type        = string
+  description = "Cloud Storage bucket name"
+}
+
+variable "location" {
+  type        = string
+  description = "Location or region for resources"
+}
+
+

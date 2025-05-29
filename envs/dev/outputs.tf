@@ -14,21 +14,46 @@ output "subnet_self_link" {
 }
 
 output "gke_cluster_name" {
-  value = module.gke.cluster_name
+  description = "Name of the GKE cluster"
+  value       = module.gke.cluster_name
 }
 
 output "gke_cluster_endpoint" {
-  value = module.gke.cluster_endpoint
+  description = "Endpoint of the GKE cluster"
+  value       = module.gke.cluster_endpoint
 }
 
 output "gke_cluster_version" {
-  value = module.gke.cluster_master_version
+  description = "Master version of the GKE cluster"
+  value       = module.gke.cluster_master_version
 }
 
-output "gke_node_pool_name" {
-  value = module.gke.node_pool_name
+output "gke_default_node_pool_name" {
+  description = "Name of the default node pool"
+  value       = module.gke.default_node_pool_name
 }
 
-output "gke_node_pool_node_count" {
-  value = module.gke.node_pool_node_count
+output "gke_default_node_pool_node_count" {
+  description = "Node count of the default node pool"
+  value       = module.gke.default_node_pool_node_count
+}
+
+output "gke_additional_node_pool_names" {
+  description = "List of additional node pool names"
+  value       = module.gke.additional_node_pool_names
+}
+
+output "gke_additional_node_pool_node_counts" {
+  description = "List of additional node pool node counts"
+  value       = module.gke.additional_node_pool_node_counts
+}
+
+output "cloud_sql_instance_connection_name" {
+  description = "Connection name of the Cloud SQL instance"
+  value       = module.cloud_sql_postgres.instance_connection_name
+}
+
+output "gcr_repo_url" {
+  description = "Docker repo URL"
+  value       = module.gcr.repo_url
 }
