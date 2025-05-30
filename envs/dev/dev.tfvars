@@ -1,4 +1,4 @@
-project_id              = "drishya-ai-dev-3"
+project_id              = "drishya-ai-dev-4"
 region                  = "us-central1"
 vpc_name                = "dev-vpc"
 routing_mode            = "REGIONAL"
@@ -59,5 +59,5 @@ services_range_name    = "gke-services-range"
 services_ip_range      = "10.21.0.0/20"
 
 repo_name = "gke-docker-repo"
-bucket_name = "drishya-ai-dev-2"
+bucket_name = "drishya-ai-dev-4"
 location    = "US"

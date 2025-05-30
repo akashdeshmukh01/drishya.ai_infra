@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "drishya-ai-dev2"
+    bucket = "drishya-ai-dev-4"
     prefix = "terraform/state/dev"
   }
 }
