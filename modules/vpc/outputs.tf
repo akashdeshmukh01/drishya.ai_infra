@@ -32,3 +32,13 @@ output "subnet_name" {
   description = "Name of the subnet"
   value       = google_compute_subnetwork.subnet.name
 }
+
+output "pods_range_name" {
+  description = "Name of the secondary range for GKE Pods"
+  value       = var.pods_range_name
+}
+
+output "services_range_name" {
+  description = "Name of the secondary range for GKE Services"
+  value       = var.services_range_name
+}

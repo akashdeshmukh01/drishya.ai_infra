@@ -28,7 +28,7 @@ additional_node_pools = [
     node_taints          = ["workloadType=backend:NoSchedule"]
     max_pods             = 30
     node_labels          = { workloadType = "backend" }
-    tags                 = { NodePool = "Backend" }
+    tags                 = { NodePool = "backend" }
   },
   {
     name                 = "dbnp"
@@ -40,7 +40,7 @@ additional_node_pools = [
     node_taints          = ["workloadType=database:NoSchedule"]
     max_pods             = 30
     node_labels          = { workloadType = "database" }
-    tags                 = { NodePool = "Database" }
+    tags                 = { NodePool = "database" }
   }
 ]
 

@@ -17,3 +17,8 @@ output "public_ip" {
   description = "Public IP address of the instance (if applicable)"
   value       = google_sql_database_instance.postgres_instance.public_ip_address
 }
+
+
+output "instance_self_link" {
+  value = google_sql_database_instance.postgres_instance.self_link
+}

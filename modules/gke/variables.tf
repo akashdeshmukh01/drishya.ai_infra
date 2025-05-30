@@ -3,34 +3,61 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "region" {
-  description = "GCP region to deploy the GKE cluster"
+variable "project_id" {
+  description = "GCP project ID"
   type        = string
 }
 
-/*variable "zone" {
-  description = "The zone to create the GKE cluster in (for zonal cluster)"
+variable "region" {
+  description = "GCP region"
   type        = string
-}*/
+}
 
 variable "vpc_id" {
-  description = "The ID of the VPC network to attach the cluster to"
+  description = "VPC network id"
   type        = string
 }
 
 variable "subnet_self_link" {
-  description = "The self_link of the subnet for the cluster"
+  description = "Subnet self link"
   type        = string
 }
 
-variable "node_count" {
-  description = "Number of nodes in the default node pool"
-  type        = number
-  default     = 3
+variable "pods_range_name" {
+  description = "Secondary IP range name for pods"
+  type        = string
 }
 
-variable "machine_type" {
-  description = "Machine type for the nodes"
+variable "services_range_name" {
+  description = "Secondary IP range name for services"
   type        = string
-  default     = "e2-medium"
+}
+
+variable "default_node_pool" {
+  description = "Default node pool configuration"
+  type = object({
+    name                 = string
+    node_count           = number
+    machine_type         = string
+    min_count            = number
+    max_count            = number
+    auto_scaling_enabled = bool
+  })
+}
+
+variable "additional_node_pools" {
+  description = "Additional node pools"
+  type = list(object({
+    name                 = string
+    machine_type         = string
+    node_count           = number
+    min_count            = number
+    max_count            = number
+    auto_scaling_enabled = bool
+    node_taints          = optional(list(string))
+    max_pods             = optional(number)
+    node_labels          = optional(map(string))
+    tags                 = optional(map(string))
+  }))
+  default = []
 }

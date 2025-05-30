@@ -29,3 +29,23 @@ variable "private_ip_google_access" {
   type        = bool
   default     = true
 }
+
+variable "pods_range_name" {
+  description = "Name of the secondary range for GKE Pods"
+  type        = string
+}
+
+variable "pods_ip_range" {
+  description = "CIDR range for GKE Pods"
+  type        = string
+}
+
+variable "services_range_name" {
+  description = "Name of the secondary range for GKE Services"
+  type        = string
+}
+
+variable "services_ip_range" {
+  description = "CIDR range for GKE Services"
+  type        = string
+}
